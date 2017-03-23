@@ -57,6 +57,8 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 **What are your technical concerns?**
 - *Refreshing:* How often should the app refresh the positions of the metro/bus? Too fast and we're using too much data and   memory. Too slow and it would be inaccurate.
+
+
   *Maps:* Since the team hasn't worked with maps yet, the learning curve will be steep and figuring how overlays work, how     to work with Maps API works will be technically challenging.
 
 ## Initial Plan (WireFrame)
