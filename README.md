@@ -20,7 +20,7 @@ The user base is anyone who uses the metro and metro buses, but for now DC metro
 **Important**
 - [ ] Display the nearest stations
 - [ ] Display the time of the metro and buses
-- [ ] Use WMATA API
+- [x] Use WMATA API
 - [ ] Use Search bar to Search Stations
 - [ ] Detail View Page of the trains at the stations
 - [ ] Display preduct map of the selected train
