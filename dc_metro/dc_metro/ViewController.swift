@@ -9,12 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var lines: [NSDictionary]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let trainStation = TrainStationClient()
-        let lines = trainStation.trainLines()
-        print(lines)
+        trainStation.trainLines(success: {(line: [NSDictionary])->() in
+            self.lines = line
+            print(self.lines)
+        })
         trainStation.parkingInfo(stationId: "E08")
         // Do any additional setup after loading the view, typically from a nib.
     }
