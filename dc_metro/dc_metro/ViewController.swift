@@ -16,9 +16,8 @@ class ViewController: UIViewController {
         let trainStation = TrainStationClient()
         trainStation.trainLines(success: {(line: [NSDictionary])->() in
             self.lines = line
-            print(self.lines)
+            print(self.lines!)
         })
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {

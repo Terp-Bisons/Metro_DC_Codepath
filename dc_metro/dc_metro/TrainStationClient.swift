@@ -35,11 +35,12 @@ class TrainStationClient: BDBOAuth1SessionManager{
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     self.lines = dataDictionary["Lines"] as? [NSDictionary]
+                    success(self.lines!)
                 }
             }
         }
         task.resume()
-        success(self.lines!)
+//        success(self.lines!)
     }
     
     func parkingInfo(stationId: String){
