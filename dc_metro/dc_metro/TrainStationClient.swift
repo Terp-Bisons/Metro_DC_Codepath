@@ -17,7 +17,7 @@ class TrainStationClient: BDBOAuth1SessionManager{
     //static let sharedInstance = TwitterClient(baseURL: NSURL(string:"https://api.twitter.com")! as URL!, consumerKey: "xUgm852TuX3mcJG7Nfhyw0poo", consumerSecret: "UF9V6RImOjAXUTjJVWWEAcFkieHjO4Rv7wncuKPeMBDOG0A0wJ")
     
     //to store information of all train lines
-    var lines: [NSDictionary]? = []
+    static var lines: [NSDictionary]? = []
     
     //to store information regarding parking at specific stations
     var stationParking: [NSDictionary]?
@@ -37,12 +37,17 @@ class TrainStationClient: BDBOAuth1SessionManager{
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
-                    self.lines = dataDictionary["Lines"] as? [NSDictionary]
+                    TrainStationClient.lines = dataDictionary["Lines"] as? [NSDictionary]
+                    print(TrainStationClient.lines!)
                 }
             }
         }
         task.resume()
+<<<<<<< HEAD
+        return TrainStationClient.lines!
+=======
         success(self.lines!)
+>>>>>>> 82c0d8bdc067e979bedc7ab5284ab795f225d782
     }
     
     func parkingInfo(stationId: String){
