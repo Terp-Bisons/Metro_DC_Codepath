@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1761B761EA2F8B000DB340E /* BusStationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1761B751EA2F8B000DB340E /* BusStationClient.swift */; };
 		CA28FDAC1E863C2D00D51D35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28FDAB1E863C2D00D51D35 /* AppDelegate.swift */; };
 		CA28FDAE1E863C2D00D51D35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28FDAD1E863C2D00D51D35 /* ViewController.swift */; };
 		CA28FDB11E863C2D00D51D35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA28FDAF1E863C2D00D51D35 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 		03E65961E6C281EF3852BC8D /* Pods-dc_metro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dc_metro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dc_metro/Pods-dc_metro.debug.xcconfig"; sourceTree = "<group>"; };
 		1389D8AF47F8A1963D847D69 /* Pods_dc_metro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dc_metro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4248A9684C3CD77F894649B /* Pods-dc_metro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dc_metro.release.xcconfig"; path = "Pods/Target Support Files/Pods-dc_metro/Pods-dc_metro.release.xcconfig"; sourceTree = "<group>"; };
+		B1761B751EA2F8B000DB340E /* BusStationClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStationClient.swift; sourceTree = "<group>"; };
 		CA28FDA81E863C2D00D51D35 /* dc_metro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dc_metro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA28FDAB1E863C2D00D51D35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA28FDAD1E863C2D00D51D35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				CAEF2FD71E99E865000643B7 /* TrainStationClient.swift */,
+				B1761B751EA2F8B000DB340E /* BusStationClient.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1761B761EA2F8B000DB340E /* BusStationClient.swift in Sources */,
 				CA28FDAE1E863C2D00D51D35 /* ViewController.swift in Sources */,
 				CA28FDAC1E863C2D00D51D35 /* AppDelegate.swift in Sources */,
 				CAEF2FD81E99E865000643B7 /* TrainStationClient.swift in Sources */,
