@@ -18,7 +18,6 @@ class ViewController: UIViewController {
             self.lines = line
             print(self.lines)
         })
-        trainStation.parkingInfo(stationId: "E08")
         // Do any additional setup after loading the view, typically from a nib.
     }
 

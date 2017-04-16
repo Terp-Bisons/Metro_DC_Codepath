@@ -13,11 +13,9 @@ import BDBOAuth1Manager
 class TrainStationClient: BDBOAuth1SessionManager{
     let baseUrl = "https://api.wmata.com/Rail.svc/json/"
     let apiKey = "api_key=d88deb94540843d0bd6333440449ebe3"
-   // static let sharedInstance = TrainStationClient(baseURL: NSURL(string:"https://api.wmata.com/Rail.svc/json/")! as URL!, consumerKey: "api_key=d88deb94540843d0bd6333440449ebe3", consumerSecret: nil)
-    //static let sharedInstance = TwitterClient(baseURL: NSURL(string:"https://api.twitter.com")! as URL!, consumerKey: "xUgm852TuX3mcJG7Nfhyw0poo", consumerSecret: "UF9V6RImOjAXUTjJVWWEAcFkieHjO4Rv7wncuKPeMBDOG0A0wJ")
     
     //to store information of all train lines
-    static var lines: [NSDictionary]? = []
+    var lines: [NSDictionary]? = []
     
     //to store information regarding parking at specific stations
     var stationParking: [NSDictionary]?
@@ -29,25 +27,19 @@ class TrainStationClient: BDBOAuth1SessionManager{
     var pathBetweenTwo: [NSArray]?
     
     func trainLines(success: @escaping ([NSDictionary])->()){
-        var lines: [NSDictionary]? = []
-        //let trainlinessharedInstance = TrainStationClient(baseURL: NSURL(string:"https://api.wmata.com/Rail.svc/json/jLines/?")! as URL!, consumerKey: "api_key=d88deb94540843d0bd6333440449ebe3", consumerSecret: nil)
+//        var lines: [NSDictionary]? = []
         let url = URL(string: baseUrl + "jLines/?" + apiKey)!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
-                    TrainStationClient.lines = dataDictionary["Lines"] as? [NSDictionary]
-                    print(TrainStationClient.lines!)
+                    self.lines = dataDictionary["Lines"] as? [NSDictionary]
                 }
             }
         }
         task.resume()
-<<<<<<< HEAD
-        return TrainStationClient.lines!
-=======
         success(self.lines!)
->>>>>>> 82c0d8bdc067e979bedc7ab5284ab795f225d782
     }
     
     func parkingInfo(stationId: String){
