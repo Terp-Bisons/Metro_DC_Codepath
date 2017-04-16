@@ -1,26 +1,115 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Live Train-->
+        <scene sceneID="p26-U6-6xf">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AIH-BO-TPn" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="T2x-5a-Pdg"/>
+                        <viewControllerLayoutGuide type="bottom" id="umP-ZC-TRe"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="CKf-rD-OrV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Live Train" selectedImage="underground" id="VWD-37-SoO"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8yp-ph-s4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="4952.8000000000002" y="-1306.5967016491754"/>
+        </scene>
+        <!--Metro Times-->
+        <scene sceneID="FAG-jy-QMe">
+            <objects>
+                <viewController id="il6-Bz-Uuz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GPx-oN-yzC"/>
+                        <viewControllerLayoutGuide type="bottom" id="pbc-CY-Wn2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jvz-ZL-BJK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Metro Times" selectedImage="alarm-clock" id="ZF2-k4-26d"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z4b-Wu-Wf6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4952.8000000000002" y="-550.07496251874068"/>
+        </scene>
+        <!--Live Bus-->
+        <scene sceneID="Jo3-bk-VIN">
+            <objects>
+                <viewController id="Zrs-aN-IvM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DGk-Ws-m7a"/>
+                        <viewControllerLayoutGuide type="bottom" id="n05-Bc-amy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nub-35-ceT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Live Bus" selectedImage="bus-side-view" id="gTw-jO-cJG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jto-jj-MBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4952.8000000000002" y="183.95802098950526"/>
+        </scene>
+        <!--Trip Planner-->
+        <scene sceneID="p1s-cW-CXO">
+            <objects>
+                <viewController id="Jyc-Zu-wtg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KJg-Bk-3xc"/>
+                        <viewControllerLayoutGuide type="bottom" id="NaY-Jk-I2W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4cl-xE-6n2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Trip Planner" selectedImage="calendar-with-a-clock-time-tools" id="BZL-VV-WMy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Xz-6H-qUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4967.1999999999998" y="903.59820089955031"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="zhe-wM-2hL">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="jVz-ny-Ysk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="aPC-gv-FW7">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="AIH-BO-TPn" kind="relationship" relationship="viewControllers" id="xWf-zR-nS0"/>
+                        <segue destination="il6-Bz-Uuz" kind="relationship" relationship="viewControllers" id="nsZ-OS-sEy"/>
+                        <segue destination="Zrs-aN-IvM" kind="relationship" relationship="viewControllers" id="w2W-VS-u7J"/>
+                        <segue destination="Jyc-Zu-wtg" kind="relationship" relationship="viewControllers" id="qXO-Fr-74E"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WnE-rs-7p0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2985" y="-228"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="alarm-clock" width="32" height="32"/>
+        <image name="bus-side-view" width="32" height="32"/>
+        <image name="calendar-with-a-clock-time-tools" width="32" height="32"/>
+        <image name="underground" width="32" height="32"/>
+    </resources>
 </document>

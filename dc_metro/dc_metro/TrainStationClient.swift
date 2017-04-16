@@ -14,7 +14,7 @@ class TrainStationClient: NSObject {
     let apiKey = "api_key=d88deb94540843d0bd6333440449ebe3"
     
     //to store information of all train lines
-    var lines: [NSDictionary]? = []
+    static var lines: [NSDictionary]? = []
     
     //to store information regarding parking at specific stations
     var stationParking: [NSDictionary]?
@@ -33,12 +33,13 @@ class TrainStationClient: NSObject {
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
-                    self.lines = dataDictionary["Lines"] as? [NSDictionary]
+                    TrainStationClient.lines = dataDictionary["Lines"] as? [NSDictionary]
+                    print(TrainStationClient.lines!)
                 }
             }
         }
         task.resume()
-        return self.lines!
+        return TrainStationClient.lines!
     }
     
     func parkingInfo(stationId: String){
