@@ -10,6 +10,10 @@ import UIKit
 
 class LiveTrainTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var destinationName: UILabel!
+    @IBOutlet weak var destinationTime: UILabel!
+    @IBOutlet weak var lineLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
