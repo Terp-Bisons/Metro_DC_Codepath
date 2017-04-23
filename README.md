@@ -18,10 +18,10 @@ The user base is anyone who uses the metro and metro buses, but for now DC metro
 ## User Stories
 
 **Important**
-- [ ] Display the nearest stations
-- [ ] Display the time of the metro and buses
+- [x] Display the nearest stations
+- [x] Display the time of the metro and buses
 - [x] Use WMATA API
-- [ ] Use Search bar to Search Stations
+- [x] Use Search bar to Search Stations
 - [ ] Detail View Page of the trains at the stations
 - [ ] Display preduct map of the selected train
 
