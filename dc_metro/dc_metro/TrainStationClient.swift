@@ -9,10 +9,15 @@
 import UIKit
 import AFNetworking
 import BDBOAuth1Manager
+import CoreLocation
 
 class TrainStationClient: BDBOAuth1SessionManager{
     let baseUrl = "https://api.wmata.com/Rail.svc/json/"
     let apiKey = "api_key=d88deb94540843d0bd6333440449ebe3"
+    
+    //for location
+    let locManager = CLLocationManager()
+    var currentLocation: CLLocation!
     
     //to store information of all train lines
     var lines: [NSDictionary]? = []
@@ -28,8 +33,8 @@ class TrainStationClient: BDBOAuth1SessionManager{
     //to store information regarding the path between two stations
     var pathBetweenTwo: [NSArray]?
     
+    //to return the train lines
     func trainLines(success: @escaping ([NSDictionary])->()){
-//        var lines: [NSDictionary]? = []
         let url = URL(string: baseUrl + "jLines/?" + apiKey)!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -42,9 +47,9 @@ class TrainStationClient: BDBOAuth1SessionManager{
             }
         }
         task.resume()
-//        success(self.lines!)
     }
     
+    //to return the train station information
     func trainStations(success: @escaping (Dictionary<String, String>) -> ()){
         let url = URL(string: baseUrl + "jStations/?" + apiKey)!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
@@ -70,6 +75,7 @@ class TrainStationClient: BDBOAuth1SessionManager{
         task.resume()
     }
     
+    //to return the parking information in certain stations
     func parkingInfo(stationId: String){
         let url = URL(string: baseUrl + "jStationParking?StationCode=" + stationId + "&" + apiKey)!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
@@ -87,6 +93,7 @@ class TrainStationClient: BDBOAuth1SessionManager{
         task.resume()
     }
     
+    //plotting the path between two stations
     func pathBetweenTwoStations(station1Id: String, station2Id: String){
         let url = URL(string: baseUrl + "jPath?FromStationCode=" + station1Id + "&ToStationCode=" + station2Id + "&" + apiKey)!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
@@ -101,6 +108,7 @@ class TrainStationClient: BDBOAuth1SessionManager{
         task.resume()
     }
     
+    //to return the current trains and their times at specific stations
     func currentTrains(stationID: String, success: @escaping ([NSDictionary])->()){
         var currentTrains: [NSDictionary]? = []
         let url = URL(string: "https://api.wmata.com/StationPrediction.svc/json/GetPrediction/" + stationID + "?api_key=d88deb94540843d0bd6333440449ebe3")!
@@ -117,5 +125,19 @@ class TrainStationClient: BDBOAuth1SessionManager{
         task.resume()
     }
     
+    //to get the latitude and longitude
+    func getLocation(success: @escaping ([String])->()) {
+        locManager.requestWhenInUseAuthorization()
+        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            currentLocation = locManager.location
+            let lat = String(currentLocation.coordinate.latitude)
+            let lon = String(currentLocation.coordinate.longitude)
+            success([lat, lon])
+        }
+        else{
+            success(["you failed me hooman"])
+        }
+    }
 
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
+    @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var trainStations: UIPickerView!
     @IBOutlet weak var tableView: UITableView!
     var liveTrain: [NSDictionary] = []
@@ -18,7 +19,7 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
     var finalTrain: [NSDictionary] = []
     var stationList: Dictionary<String, String> = [:]
     var stationSelect: Array<String> = []
-    var reqStation: String = "B03"
+    var reqStation: String = "E02"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,27 +30,39 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
         trainStations.dataSource = self
         trainStations.delegate = self
         
+        stationNameLabel.text = "Shaw-Howard U"
         let trainStation = TrainStationClient()
         
+        //to populate the list of stations to select from
         trainStation.trainStations(success: {(line: Dictionary) ->() in
             self.stationList = line
-//            print(self.stationList)
             for (name, _) in self.stationList{
                 self.stationSelect.append(name)
             }
             self.stationSelect.sort()
+            self.trainStations.reloadAllComponents()
         })
+        
+        trainStation.getLocation(success: {(values: [String]) -> () in
+            let value = values
+            print(value)
+        })
+        
+        //to check if the value of station is given, else use default **GALLERY PLACE IN OUR CASE**
         if stationList[reqStation] != nil{
             self.reqStation = self.stationList[reqStation]!
         }
+        
+        //to return the train lines at current station with live timings
         trainStation.currentTrains(stationID: self.reqStation, success: {(line: [NSDictionary])->() in
             self.liveTrain = line
-//            print(self.liveTrain)
+            self.finalTrain = []
+            self.groups = 0
+            self.countType = [0,0,0,0]
             for item in self.liveTrain{
                 let obj = item as NSDictionary
                 let grp = Int(obj["Group"] as! String)
                 self.countType[grp!-1] += 1
-//                print(grp!)
             }
             for item in self.countType{
                 if (item > 0){
@@ -71,15 +84,15 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
                 i += 1
                 count -= 1
             }
-            print(self.finalTrain.count)
+//            print(self.finalTrain.count)
             self.tableView.reloadData()
             self.trainStations.reloadAllComponents()
         })
-        // Do any additional setup after loading the view.
     }
     
     func returnTrain(){
         if stationList[reqStation] != nil{
+            stationNameLabel.text = reqStation
             self.reqStation = self.stationList[reqStation]!
         }
         self.finalTrain = []
@@ -88,12 +101,10 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
         let trainStation = TrainStationClient()
         trainStation.currentTrains(stationID: self.reqStation, success: {(line: [NSDictionary])->() in
             self.liveTrain = line
-            //            print(self.liveTrain)
             for item in self.liveTrain{
                 let obj = item as NSDictionary
                 let grp = Int(obj["Group"] as! String)
                 self.countType[grp!-1] += 1
-                //                print(grp!)
             }
             for item in self.countType{
                 if (item > 0){
@@ -115,7 +126,7 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
                 i += 1
                 count -= 1
             }
-            print(self.finalTrain)
+//            print(self.finalTrain)
             self.tableView.reloadData()
         })
     }
@@ -142,7 +153,7 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         reqStation = stationSelect[row]
-        print(reqStation)
+//        print(reqStation)
     }
 
     @IBAction func onClick(_ sender: Any) {
@@ -158,8 +169,11 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
             let destinationName = self.finalTrain[indexPath.row]["DestinationName"] as! String
             let destinationTime = self.finalTrain[indexPath.row]["Min"] as! String
             cell.destinationName.text = destinationName
+            cell.destinationName.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightRegular)
             cell.destinationTime.text = destinationTime
+            cell.destinationTime.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightRegular)
             let color =  self.finalTrain[indexPath.row]["Line"] as! String
+            cell.lineLabel.text=""
             cell.lineLabel.layer.cornerRadius = 0.5 * cell.lineLabel.bounds.size.width
             cell.lineLabel.layer.borderWidth = 2.0
             cell.lineLabel.frame.size = CGSize(width: 35, height: 35)
@@ -178,15 +192,22 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
                 cell.lineLabel.backgroundColor = UIColor(red: 173/255, green: 173/255, blue: 173/255, alpha: 1.0)
             }
         } else {
-            cell.destinationName.text = ""
-            cell.lineLabel.isHidden = true
-            cell.destinationTime.text = ""
+            cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.width/2.0, 1, cell.bounds.width/2.0);
+            cell.destinationName.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold)
+            cell.destinationName.text = "Destination"
+            cell.lineLabel.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1.0)
+            cell.lineLabel.layer.cornerRadius = 0
+            cell.lineLabel.layer.borderWidth = 0
+            cell.lineLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold)
+            cell.lineLabel.text = "Line"
+            cell.destinationTime.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold)
+            cell.destinationTime.text = "Time"
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return finalTrain.count
+        return finalTrain.count - 1
     }
     
     /*

@@ -17,6 +17,12 @@ class LiveBusViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.delegate = self
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        let bus = BusStationClient()
+        bus.getStop(success: {(values: [NSDictionary]) -> () in
+            let value = values
+            print(value)
+        })
 
         // Do any additional setup after loading the view.
     }
