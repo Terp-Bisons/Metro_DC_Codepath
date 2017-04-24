@@ -60,10 +60,42 @@ class TripPlannerHelperViewController: UIViewController, UITableViewDataSource, 
         }
         task.resume()
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tableView.separatorStyle = .none
         let cell = tableView.dequeueReusableCell(withIdentifier: "TripHelperCell", for: indexPath) as! TripHelperCell
         //        print(self.directionsteps[indexPath.row])
         cell.directionLabel.text = self.directionsteps[indexPath.row]
+        let label = self.directionsteps[indexPath.row]
+        if (label.lowercased().range(of:"train") != nil){
+            print("train exists")
+            cell.directionImage.image = UIImage(named: "underground")
+            cell.directionImage.tintColor = UIColor.red
+        }
+        else if (label.lowercased().range(of:"metro") != nil)
+        {
+            print("metro is present")
+            cell.directionImage.image = UIImage(named: "underground")
+            cell.directionImage.tintColor = UIColor.red
+        }
+        else if (label.lowercased().range(of:"stop") != nil)
+        {
+            print("bus stop is present")
+            cell.directionImage.image = UIImage(named: "bus-stop")
+            cell.directionImage.tintColor = UIColor.blue
+        }
+        else if (label.lowercased().range(of:"bus") != nil)
+        {
+            print("bus is present")
+            cell.directionImage.image = UIImage(named: "bus-side-view")
+            cell.directionImage.tintColor = UIColor.gray
+        }
+        else
+        {
+            print("walk is present")
+            cell.directionImage.image = UIImage(named: "pedestrian-walking")
+            cell.directionImage.tintColor = UIColor.black
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

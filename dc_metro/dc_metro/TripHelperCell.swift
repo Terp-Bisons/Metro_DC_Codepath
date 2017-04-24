@@ -10,6 +10,7 @@ import UIKit
 
 class TripHelperCell: UITableViewCell {
     
+    @IBOutlet weak var directionImage: UIImageView!
     @IBOutlet weak var directionLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

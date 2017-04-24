@@ -38,6 +38,7 @@ class LiveBusDetailViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tableView.separatorStyle = .none
         let cell = tableView.dequeueReusableCell(withIdentifier: "LiveBusDetailTableViewCell", for: indexPath) as! LiveBusDetailTableViewCell
         let directionText = self.liveBus[indexPath.row]["DirectionText"] as! String
         let time = "\(self.liveBus[indexPath.row]["Minutes"] as! Int)"

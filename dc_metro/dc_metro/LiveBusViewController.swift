@@ -44,6 +44,7 @@ class LiveBusViewController: UIViewController, UITableViewDataSource, UITableVie
     
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tableView.separatorStyle = .none
         let cell = tableView.dequeueReusableCell(withIdentifier: "LiveBusCell", for: indexPath) as! LiveBusCell
         cell.stationName.text = self.stopsToView[indexPath.row]
         return cell
