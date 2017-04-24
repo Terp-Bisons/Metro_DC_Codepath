@@ -61,6 +61,7 @@ class LiveBusViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPath(for: cell)
         let vc = segue.destination as! LiveBusDetailViewController
+        vc.stopID = self.stops[stopsToView[(indexPath?.row)!]]
         vc.stopName = self.stopsToView[(indexPath?.row)!]
         
     }

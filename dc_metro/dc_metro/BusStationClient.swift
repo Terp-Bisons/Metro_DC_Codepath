@@ -20,6 +20,7 @@ class BusStationClient: BDBOAuth1SessionManager {
     var currentLocation: CLLocation!
     
     var route: [NSDictionary]? = []
+    var liveRoute: [NSDictionary]? = []
     
     func busStationroute(success: @escaping ([NSDictionary])->()){
         let url = URL(string: baseUrl + "jLines/?" + apiKey)!
@@ -69,5 +70,19 @@ class BusStationClient: BDBOAuth1SessionManager {
         task.resume()
     }
     
+    func getLiveBus(stationId: String, success: @escaping ([NSDictionary]) -> ()) {
+        let url = URL(string: "https://api.wmata.com/NextBusService.svc/json/jPredictions?StopID=" + stationId + "&" + apiKey)!
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+        let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+            if let data = data {
+                if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
+                    self.liveRoute = dataDictionary["Predictions"] as? [NSDictionary]
+                    success(self.liveRoute!)
+                }
+            }
+        }
+        task.resume()
+    }
     
 }

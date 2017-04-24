@@ -196,7 +196,7 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
             cell.blueLineView.isHidden = false
             cell.destinationName.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold)
             cell.destinationName.text = "Destination"
-            cell.lineLabel.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1.0)
+            cell.lineLabel.backgroundColor = .none
             cell.lineLabel.layer.cornerRadius = 0
             cell.lineLabel.layer.borderWidth = 0
             cell.lineLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold)

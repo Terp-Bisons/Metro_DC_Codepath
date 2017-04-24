@@ -26,6 +26,7 @@
 		CA5E1DF61EAD8A3500A31F9F /* DetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E1DF51EAD8A3500A31F9F /* DetailViewCell.swift */; };
 		CA5E1DF81EAD90D800A31F9F /* TripPlannerHelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E1DF71EAD90D800A31F9F /* TripPlannerHelperViewController.swift */; };
 		CA5E1DFA1EAD915800A31F9F /* TripHelperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E1DF91EAD915800A31F9F /* TripHelperCell.swift */; };
+		CAEAAA7C1EAD9FEA00AA76E8 /* LiveBusDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEAAA7B1EAD9FEA00AA76E8 /* LiveBusDetailTableViewCell.swift */; };
 		CAEF2FD81E99E865000643B7 /* TrainStationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEF2FD71E99E865000643B7 /* TrainStationClient.swift */; };
 		EC4A7E4C37A1D152071C302B /* Pods_dc_metro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1389D8AF47F8A1963D847D69 /* Pods_dc_metro.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		CA5E1DF51EAD8A3500A31F9F /* DetailViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewCell.swift; sourceTree = "<group>"; };
 		CA5E1DF71EAD90D800A31F9F /* TripPlannerHelperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPlannerHelperViewController.swift; sourceTree = "<group>"; };
 		CA5E1DF91EAD915800A31F9F /* TripHelperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHelperCell.swift; sourceTree = "<group>"; };
+		CAEAAA7B1EAD9FEA00AA76E8 /* LiveBusDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveBusDetailTableViewCell.swift; sourceTree = "<group>"; };
 		CAEF2FD71E99E865000643B7 /* TrainStationClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainStationClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +138,7 @@
 				CA5E1DF51EAD8A3500A31F9F /* DetailViewCell.swift */,
 				CA5E1DF71EAD90D800A31F9F /* TripPlannerHelperViewController.swift */,
 				CA5E1DF91EAD915800A31F9F /* TripHelperCell.swift */,
+				CAEAAA7B1EAD9FEA00AA76E8 /* LiveBusDetailTableViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				CA4F43FC1EA30EB400936574 /* MetroDCTabBarViewController.swift in Sources */,
 				CA4F43F41EA30DD500936574 /* LiveTrainViewController.swift in Sources */,
 				CA4F43F61EA30E0E00936574 /* MetroTimesViewController.swift in Sources */,
+				CAEAAA7C1EAD9FEA00AA76E8 /* LiveBusDetailTableViewCell.swift in Sources */,
 				CA28FDAC1E863C2D00D51D35 /* AppDelegate.swift in Sources */,
 				CA5E1DF61EAD8A3500A31F9F /* DetailViewCell.swift in Sources */,
 				CAEF2FD81E99E865000643B7 /* TrainStationClient.swift in Sources */,

@@ -8,13 +8,28 @@
 
 import UIKit
 
-class LiveBusDetailViewController: UIViewController {
+class LiveBusDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate {
     
     var stopName : String!
+    var stopID: String!
+    var liveBus: [NSDictionary] = []
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(stopName)
+        let liveBus = BusStationClient()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.estimatedRowHeight = 300
+        tableView.rowHeight = UITableViewAutomaticDimension
         // Do any additional setup after loading the view.
+        print(stopID)
+        liveBus.getLiveBus(stationId: self.stopID, success: {(line: [NSDictionary])->() in
+            print(line)
+            self.liveBus = line
+            self.tableView.reloadData()
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,7 +37,20 @@ class LiveBusDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LiveBusDetailTableViewCell", for: indexPath) as! LiveBusDetailTableViewCell
+        let directionText = self.liveBus[indexPath.row]["DirectionText"] as! String
+        let time = "\(self.liveBus[indexPath.row]["Minutes"] as! Int)"
+        cell.directionTime.text = time
+        cell.directionName.text = directionText
+        return cell
+    }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(self.liveBus.count)
+        return self.liveBus.count
+    }
+    
     /*
     // MARK: - Navigation
 
