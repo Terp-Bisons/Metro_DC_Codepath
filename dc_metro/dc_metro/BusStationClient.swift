@@ -54,7 +54,7 @@ class BusStationClient: BDBOAuth1SessionManager {
         })
         let lat = location[0]
         let lon = location[1]
-        let radius = "500"
+        let radius = "250"
         let url = URL(string: baseUrl + "jStops/?Lat=" + lat + "&Lon=" + lon + "&Radius=" + radius + "&" + apiKey)!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -68,4 +68,6 @@ class BusStationClient: BDBOAuth1SessionManager {
         }
         task.resume()
     }
+    
+    
 }

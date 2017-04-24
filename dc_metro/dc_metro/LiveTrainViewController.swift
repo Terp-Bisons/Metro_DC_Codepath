@@ -166,6 +166,7 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "LiveTrainTableViewCell", for: indexPath) as! LiveTrainTableViewCell
         if (self.finalTrain[indexPath.row].count > 0){
             cell.lineLabel.isHidden = false
+            cell.blueLineView.isHidden = true
             let destinationName = self.finalTrain[indexPath.row]["DestinationName"] as! String
             let destinationTime = self.finalTrain[indexPath.row]["Min"] as! String
             cell.destinationName.text = destinationName
@@ -192,7 +193,7 @@ class LiveTrainViewController: UIViewController, UITableViewDataSource, UITableV
                 cell.lineLabel.backgroundColor = UIColor(red: 173/255, green: 173/255, blue: 173/255, alpha: 1.0)
             }
         } else {
-            cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.width/2.0, 1, cell.bounds.width/2.0);
+            cell.blueLineView.isHidden = false
             cell.destinationName.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold)
             cell.destinationName.text = "Destination"
             cell.lineLabel.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1.0)

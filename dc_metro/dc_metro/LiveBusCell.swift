@@ -10,6 +10,8 @@ import UIKit
 
 class LiveBusCell: UITableViewCell {
 
+    @IBOutlet weak var stationName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
