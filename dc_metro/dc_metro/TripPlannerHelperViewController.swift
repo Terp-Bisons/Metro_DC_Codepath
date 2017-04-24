@@ -29,8 +29,6 @@ class TripPlannerHelperViewController: UIViewController, UITableViewDataSource, 
     
     func passValue(){
         let finalURL = "https://maps.googleapis.com/maps/api/directions/json?origin="+from!+"&destination="+to!+"&mode=transit&key=AIzaSyB6DH0ejiUg7MnATbqpOXRC-Hh-vQ2jsFs"
-        
-        //let finalURL = "https://maps.googleapis.com/maps/api/directions/json?origin=2205+4th+St+NW+Washington+DC&destination=University+of+Maryland&mode=transit&key=AIzaSyB6DH0ejiUg7MnATbqpOXRC-Hh-vQ2jsFs"
         let url = URL(string: finalURL)
         let request = URLRequest(url: url!)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
