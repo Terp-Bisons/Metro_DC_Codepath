@@ -34,25 +34,32 @@ class TripPlannerHelperViewController: UIViewController, UITableViewDataSource, 
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         //        print(request)
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-            //            print("success")
+            print("success")
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     var instructions = dataDictionary["routes"] as! [NSDictionary]
-                    var legs = instructions[0]["legs"] as! [NSDictionary]
-                    let steps = legs[0]["steps"] as! [NSDictionary]
-                    for item in steps{
-                        let obj = item
-                        self.directionsteps.append((obj["html_instructions"] as? String)!)
-                        //                        print(obj["html_instructions"] as! String)
-                        if (obj["travel_mode"] as! String == "TRANSIT"){
-                            let transitDetails = obj["transit_details"] as! NSDictionary
-                            let arrivalStop = transitDetails["arrival_stop"] as! NSDictionary
-                            self.directionsteps.append("The final stop is " + (arrivalStop["name"] as? String)!)
-                            //                            print("The final stop is " + (arrivalStop["name"] as! String))
-                        }
+                    if instructions.count == 0{
+                        let alert = UIAlertController(title: "ERROR!", message: "Please be more specific about the address", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
                     }
-                    print(self.directionsteps)
-                    self.tableView.reloadData()
+                    else{
+                        var legs = instructions[0]["legs"] as! [NSDictionary]
+                        let steps = legs[0]["steps"] as! [NSDictionary]
+                        for item in steps{
+                            let obj = item
+                            self.directionsteps.append((obj["html_instructions"] as? String)!)
+                            //                        print(obj["html_instructions"] as! String)
+                            if (obj["travel_mode"] as! String == "TRANSIT"){
+                                let transitDetails = obj["transit_details"] as! NSDictionary
+                                let arrivalStop = transitDetails["arrival_stop"] as! NSDictionary
+                                self.directionsteps.append("The final stop is " + (arrivalStop["name"] as? String)!)
+                                //                            print("The final stop is " + (arrivalStop["name"] as! String))
+                            }
+                        }
+                        print(self.directionsteps)
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }

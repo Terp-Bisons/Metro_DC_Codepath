@@ -246,8 +246,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXQ-cY-zu5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXQ-cY-zu5">
                                                     <rect key="frame" x="8" y="8" width="294" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -255,10 +256,7 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.94041221289999999" green="0.980997809" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstItem="UXQ-cY-zu5" firstAttribute="top" secondItem="vXx-cx-0hp" secondAttribute="topMargin" id="8md-B7-YLm"/>
-                                                <constraint firstItem="zeG-Mn-gh9" firstAttribute="bottom" secondItem="UXQ-cY-zu5" secondAttribute="bottom" id="9L5-Pu-TfZ"/>
                                                 <constraint firstItem="zeG-Mn-gh9" firstAttribute="trailing" secondItem="vXx-cx-0hp" secondAttribute="trailingMargin" id="Ajs-C9-pb7"/>
-                                                <constraint firstItem="UXQ-cY-zu5" firstAttribute="leading" secondItem="vXx-cx-0hp" secondAttribute="leadingMargin" id="UPr-Mn-88N"/>
                                                 <constraint firstItem="zeG-Mn-gh9" firstAttribute="top" secondItem="vXx-cx-0hp" secondAttribute="topMargin" id="vox-Zw-U9H"/>
                                             </constraints>
                                         </tableViewCellContentView>
