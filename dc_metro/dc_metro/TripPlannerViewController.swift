@@ -16,10 +16,25 @@ class TripPlannerViewController: UIViewController{
     @IBOutlet weak var toText: UITextField!
     var apiKey = "AIzaSyB6DH0ejiUg7MnATbqpOXRC-Hh-vQ2jsFs"
     var segSteps: [NSDictionary] = []
+    @IBOutlet weak var datepicker: UIDatePicker!
+    @IBOutlet weak var switch_val: UISwitch!
     
+    
+    @IBOutlet weak var viewdatepicker: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        datepicker.isHidden = true
+        switch_val.addTarget(self, action: #selector(switchIsChanged(switch_val:)), for: UIControlEvents.valueChanged)
+        datepicker.timeZone = NSTimeZone.local
         // Do any additional setup after loading the view.
+    }
+    
+    func switchIsChanged(switch_val: UISwitch) {
+        if switch_val.isOn {
+            datepicker.isHidden = false
+        } else {
+            datepicker.isHidden = true
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,7 +43,6 @@ class TripPlannerViewController: UIViewController{
     }
     
     @IBAction func onPress(_ sender: Any) {
-        
     }
     
     
@@ -42,6 +56,9 @@ class TripPlannerViewController: UIViewController{
             let vc = segue.destination as! TripPlannerHelperViewController
             vc.from = fromText.text?.replacingOccurrences(of:" ", with:"+")
             vc.to = toText.text?.replacingOccurrences(of:" ", with:"+")
+            vc.show_arrival_time = switch_val.isOn
+            datepicker.timeZone = NSTimeZone.local
+            vc.arrive_by = datepicker.date.timeIntervalSince1970 - 14400
         }
     }
     

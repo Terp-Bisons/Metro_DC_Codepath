@@ -14,6 +14,10 @@ class TripPlannerHelperViewController: UIViewController, UITableViewDataSource, 
     var directionsteps: Array<String> = []
     var from: String!
     var to: String!
+    var arrive_by: TimeInterval!
+    var finalURL: String = ""
+    var show_arrival_time: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -22,13 +26,23 @@ class TripPlannerHelperViewController: UIViewController, UITableViewDataSource, 
         tableView.rowHeight = UITableViewAutomaticDimension
         print(from)
         print(to)
+        print(show_arrival_time)
         passValue()
         // Do any additional setup after loading the view.
     }
     
     
     func passValue(){
-        let finalURL = "https://maps.googleapis.com/maps/api/directions/json?origin="+from!+"&destination="+to!+"&mode=transit&key=AIzaSyB6DH0ejiUg7MnATbqpOXRC-Hh-vQ2jsFs"
+        if (show_arrival_time){
+            let arrive_time_formatted_double = arrive_by!
+            let arrive_time_formatted = Int(arrive_time_formatted_double)
+            print(String(arrive_time_formatted))
+            finalURL = "https://maps.googleapis.com/maps/api/directions/json?origin="+from!+"&destination="+to!+"&mode=transit&arrival_time="+String(arrive_time_formatted)+"&key=AIzaSyB6DH0ejiUg7MnATbqpOXRC-Hh-vQ2jsFs"
+        }
+        else {
+            finalURL = "https://maps.googleapis.com/maps/api/directions/json?origin="+from!+"&destination="+to!+"&mode=transit&key=AIzaSyB6DH0ejiUg7MnATbqpOXRC-Hh-vQ2jsFs"
+        }
+        
         let url = URL(string: finalURL)
         let request = URLRequest(url: url!)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -46,6 +60,22 @@ class TripPlannerHelperViewController: UIViewController, UITableViewDataSource, 
                     else{
                         var legs = instructions[0]["legs"] as! [NSDictionary]
                         let steps = legs[0]["steps"] as! [NSDictionary]
+                        let arrival_time_dict = legs[0]["departure_time"] as! NSDictionary
+                        let arrivaltime =  arrival_time_dict["value"] as! Float
+                        let final_arrivetime = NSDate(timeIntervalSince1970: TimeInterval(arrivaltime))
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                        dateFormatter.timeZone = NSTimeZone(abbreviation: "EST")! as TimeZone
+                        _ = dateFormatter.date
+                        let finalshowtime = String(describing: final_arrivetime)
+                        let start = finalshowtime.index(finalshowtime.startIndex, offsetBy: 10)
+                        let end = finalshowtime.index(finalshowtime.endIndex, offsetBy: -5)
+                        let range = start..<end
+                        
+                        if self.show_arrival_time{
+                            self.directionsteps.append("You should leave by " + finalshowtime.substring(with: range))
+                        }
+                        
                         for item in steps{
                             let obj = item
                             self.directionsteps.append((obj["html_instructions"] as? String)!)
