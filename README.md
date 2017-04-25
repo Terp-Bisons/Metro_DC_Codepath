@@ -22,13 +22,17 @@ The user base is anyone who uses the metro and metro buses, but for now DC metro
 - [x] Display the time of the metro and buses
 - [x] Use WMATA API
 - [x] Use Search bar to Search Stations
-- [ ] Detail View Page of the trains at the stations
-- [ ] Display preduct map of the selected train
+- [x] Detail View Page of the trains at the stations
+- [x] Trip Planner
+- [x] Detail View for bus at intersections near you
 
 The following **optional** features are implemented:
 
-- [ ] Use OAuth, either Facebook or Twitter
-- [ ] Display user's profile page
+- [x] Display the metro times in the closest station using location of the user
+- [x] Display the Bus stops within 250 m from the user using the users location
+- [x] Detail page for the trip planner
+- [ ] Display an interactive live map for the metro
+- [ ] Display an interactive live map for the bus
 
 The following **additional** features are implemented:
 
